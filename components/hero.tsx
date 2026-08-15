@@ -47,7 +47,7 @@ export function Hero() {
 
       {/* Tablet and up: full-bleed background photo, edge to edge, with the
           copy overlaid on top. */}
-      <div className="relative isolate hidden min-h-[clamp(26rem,60vh,46.5rem)] overflow-hidden sm:block min-[1920px]:min-h-[500px]">
+      <div className="relative isolate hidden min-h-[clamp(26rem,60vh,46.5rem)] overflow-hidden sm:block min-[1920px]:min-h-[650px]">
         <Image
           src="/images/hero.png"
           alt={HERO_ALT}
