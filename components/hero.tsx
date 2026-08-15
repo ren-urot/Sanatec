@@ -8,7 +8,11 @@ function HeroCopy() {
   return (
     <>
       <h1 className="text-[clamp(1.875rem,1.38rem+1.97vw,3.75rem)] leading-[1.12] font-semibold tracking-tight text-ink break-words">
-        Quality Medical Supplies for Healthcare Professionals
+        Quality Medical Supplies
+        <br />
+        for Healthcare
+        <br />
+        Professionals
       </h1>
 
       <p className="mt-5 max-w-[48ch] text-[clamp(1rem,0.92rem+0.4vw,1.125rem)] leading-relaxed text-ink-muted">
