@@ -29,6 +29,17 @@ export {
   Headset as SupportIcon,
   Package as PackageIcon,
   FileText as QuoteFileIcon,
+  Heart as WishlistIcon,
+  LayoutGrid as GridViewIcon,
+  List as ListViewIcon,
+  Minus as MinusIcon,
+  Plus as PlusIcon,
+  ZoomIn as ZoomIcon,
+  Check as CheckIcon,
+  ChevronLeft as ChevronLeftIcon,
+  ChevronRight as ChevronRightIcon,
+  ChevronUp as ChevronUpIcon,
+  Home as HomeIcon,
 } from "lucide-react";
 
 // lucide-react has no dental or brand-logo icons — hand-authored exceptions.

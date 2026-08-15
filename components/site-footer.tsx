@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import {
   ClockIcon,
   FacebookIcon,
@@ -11,8 +12,8 @@ import {
 import { categories } from "@/lib/catalog";
 
 const quickLinks = [
-  { label: "Home", href: "#top" },
-  { label: "Products", href: "#categories" },
+  { label: "Home", href: "/" },
+  { label: "Products", href: "/products" },
   { label: "Brands", href: "#" },
   { label: "Resources", href: "#" },
   { label: "About Us", href: "#" },
@@ -20,12 +21,12 @@ const quickLinks = [
 ];
 
 const resources = [
-  "Product Catalog",
-  "Certifications",
-  "Brochures",
-  "User Guides",
-  "FAQs",
-  "Track RFQ",
+  { label: "Product Catalog", href: "/products" },
+  { label: "Certifications", href: "#" },
+  { label: "Brochures", href: "#" },
+  { label: "User Guides", href: "#" },
+  { label: "FAQs", href: "#" },
+  { label: "Track RFQ", href: "#" },
 ];
 
 export function SiteFooter() {
@@ -83,9 +84,9 @@ export function SiteFooter() {
             <ul>
               {quickLinks.map((link) => (
                 <li key={link.label} className="mb-2.75">
-                  <a href={link.href} className="text-sm transition-colors hover:text-on-navy">
+                  <Link href={link.href} className="text-sm transition-colors hover:text-on-navy">
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -98,9 +99,12 @@ export function SiteFooter() {
             <ul>
               {categories.map((cat) => (
                 <li key={cat.code} className="mb-2.75">
-                  <a href="#categories" className="text-sm transition-colors hover:text-on-navy">
+                  <Link
+                    href={`/products?category=${cat.slug}`}
+                    className="text-sm transition-colors hover:text-on-navy"
+                  >
                     {cat.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -111,11 +115,14 @@ export function SiteFooter() {
               Resources
             </div>
             <ul>
-              {resources.map((label) => (
-                <li key={label} className="mb-2.75">
-                  <a href="#" className="text-sm transition-colors hover:text-on-navy">
-                    {label}
-                  </a>
+              {resources.map((resource) => (
+                <li key={resource.label} className="mb-2.75">
+                  <Link
+                    href={resource.href}
+                    className="text-sm transition-colors hover:text-on-navy"
+                  >
+                    {resource.label}
+                  </Link>
                 </li>
               ))}
             </ul>
