@@ -46,7 +46,7 @@ export function FeaturedProducts() {
                   <span className="text-[0.6875rem] text-ink-muted">SKU: {product.sku}</span>
                   <a
                     href="#rfq"
-                    className="mt-2.5 inline-flex w-full items-center justify-center rounded-lg border border-accent px-3 py-2 text-xs font-semibold text-accent transition-colors hover:bg-accent hover:text-white"
+                    className="mt-auto inline-flex w-full items-center justify-center rounded-lg border border-accent px-3 py-2 text-xs font-semibold text-accent transition-colors hover:bg-accent hover:text-white"
                   >
                     Request Quote
                   </a>

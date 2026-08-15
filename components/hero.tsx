@@ -7,11 +7,11 @@ const HERO_ALT =
 function HeroCopy() {
   return (
     <>
-      <h1 className="text-4xl leading-[1.12] font-medium tracking-tight text-ink sm:text-5xl lg:text-[3.25rem]">
+      <h1 className="text-[clamp(1.875rem,1.4rem+2.4vw,3.25rem)] leading-[1.12] font-medium tracking-tight text-ink">
         Quality Medical Supplies for Healthcare Professionals
       </h1>
 
-      <p className="mt-5 max-w-[48ch] text-base leading-relaxed text-ink-muted sm:text-lg">
+      <p className="mt-5 max-w-[48ch] text-[clamp(1rem,0.92rem+0.4vw,1.125rem)] leading-relaxed text-ink-muted">
         We supply a wide range of medical disposables and healthcare products to hospitals,
         clinics, laboratories and distributors.
       </p>
@@ -19,14 +19,14 @@ function HeroCopy() {
       <div className="mt-7 flex flex-wrap gap-3.5">
         <a
           href="#categories"
-          className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-6 py-3.5 text-[0.9375rem] font-semibold text-white transition-colors hover:bg-accent-hover"
+          className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-[clamp(1.25rem,1rem+1vw,1.5rem)] py-[clamp(0.75rem,0.65rem+0.5vw,0.875rem)] text-[clamp(0.875rem,0.83rem+0.2vw,0.9375rem)] font-semibold text-white transition-colors hover:bg-accent-hover"
         >
           <PackageIcon width={18} height={18} />
           Browse Products
         </a>
         <a
           href="#rfq"
-          className="inline-flex items-center justify-center gap-2 rounded-lg border border-border-strong bg-surface px-6 py-3.5 text-[0.9375rem] font-semibold text-ink shadow-sm transition-colors hover:border-accent hover:text-accent"
+          className="inline-flex items-center justify-center gap-2 rounded-lg border border-border-strong bg-surface px-[clamp(1.25rem,1rem+1vw,1.5rem)] py-[clamp(0.75rem,0.65rem+0.5vw,0.875rem)] text-[clamp(0.875rem,0.83rem+0.2vw,0.9375rem)] font-semibold text-ink shadow-sm transition-colors hover:border-accent hover:text-accent"
         >
           <QuoteFileIcon width={18} height={18} />
           Request a Quote
@@ -47,7 +47,7 @@ export function Hero() {
 
       {/* Tablet and up: full-bleed background photo, edge to edge, with the
           copy overlaid on top. */}
-      <div className="relative isolate hidden min-h-[53rem] overflow-hidden sm:block lg:min-h-[59rem]">
+      <div className="relative isolate hidden min-h-[clamp(26rem,60vh,46.5rem)] overflow-hidden sm:block">
         <Image
           src="/images/hero.png"
           alt={HERO_ALT}
