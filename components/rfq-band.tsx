@@ -45,13 +45,6 @@ export function RfqBand() {
             sizes="100vw"
             className="object-cover"
           />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(90deg, var(--color-tint-blue) 0%, var(--color-tint-blue) 42%, transparent 75%)",
-            }}
-          />
           <div className="relative flex h-full items-center px-10 py-14 lg:px-14">
             <div className="max-w-sm lg:max-w-md">
               <RfqCopy />
