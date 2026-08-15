@@ -7,7 +7,7 @@ const HERO_ALT =
 function HeroCopy() {
   return (
     <>
-      <h1 className="text-[clamp(1.875rem,1.4rem+2.4vw,3.25rem)] leading-[1.12] font-medium tracking-tight text-ink">
+      <h1 className="text-[60px] leading-[1.12] font-semibold tracking-tight text-ink break-words">
         Quality Medical Supplies for Healthcare Professionals
       </h1>
 
