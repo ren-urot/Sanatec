@@ -58,13 +58,6 @@ export function Hero() {
           className="object-cover min-[1920px]:scale-[1.078]"
           priority
         />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(90deg, var(--color-tint-blue) 0%, var(--color-tint-blue) 48%, transparent 82%)",
-          }}
-        />
         <div className="absolute inset-0 flex items-center">
           <div className="mx-auto w-full max-w-[80rem] px-8">
             <div className="max-w-sm lg:max-w-xl">
