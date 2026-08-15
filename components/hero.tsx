@@ -63,9 +63,11 @@ export function Hero() {
               "linear-gradient(90deg, var(--color-tint-blue) 0%, var(--color-tint-blue) 48%, transparent 82%)",
           }}
         />
-        <div className="relative mx-auto flex h-full max-w-[80rem] items-center px-8 py-16 lg:py-20">
-          <div className="max-w-sm lg:max-w-xl">
-            <HeroCopy />
+        <div className="absolute inset-0 flex items-center">
+          <div className="mx-auto w-full max-w-[80rem] px-8">
+            <div className="max-w-sm lg:max-w-xl">
+              <HeroCopy />
+            </div>
           </div>
         </div>
       </div>
