@@ -69,7 +69,7 @@ function generateRequestId() {
 
 function StepDots({ current }: { current: number }) {
   return (
-    <div className="mb-8 flex items-center overflow-x-auto pb-2">
+    <div className="mb-8 flex items-center">
       {STEPS.map((step, i) => {
         const Icon = step.icon;
         const state = i < current ? "done" : i === current ? "active" : "upcoming";
@@ -87,7 +87,7 @@ function StepDots({ current }: { current: number }) {
               >
                 <Icon width={16} height={16} />
               </span>
-              <div className="hidden sm:block">
+              <div className="hidden xl:block">
                 <span
                   className={`block text-[0.6875rem] font-bold tracking-wider uppercase ${state === "active" ? "text-accent" : "text-ink-muted"}`}
                 >
@@ -100,7 +100,7 @@ function StepDots({ current }: { current: number }) {
             </div>
             {i < STEPS.length - 1 && (
               <div
-                className={`mx-3 h-0.5 w-full min-w-6 ${i < current ? "bg-accent" : "bg-border"}`}
+                className={`mx-1.5 h-0.5 w-full min-w-3 sm:mx-3 sm:min-w-6 ${i < current ? "bg-accent" : "bg-border"}`}
               />
             )}
           </div>
@@ -133,7 +133,7 @@ const inputClasses =
   "w-full rounded-lg border border-border-strong bg-surface px-3.5 py-2.5 text-sm text-ink placeholder:text-ink-muted focus:border-accent focus:outline-none";
 
 export function RfqForm() {
-  const { items, notes, clearCart } = useCart();
+  const { items, notes, clearCart, hydrated } = useCart();
   const router = useRouter();
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
@@ -156,11 +156,11 @@ export function RfqForm() {
   });
 
   useEffect(() => {
-    if (items.length === 0 && !submitted) {
+    if (hydrated && items.length === 0 && !submitted) {
       router.replace("/products");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [items.length, submitted]);
+  }, [hydrated, items.length, submitted]);
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm((f) => ({ ...f, [key]: value }));
@@ -173,7 +173,7 @@ export function RfqForm() {
     clearCart();
   }
 
-  if (items.length === 0 && !submitted) return null;
+  if (!hydrated || (items.length === 0 && !submitted)) return null;
 
   return (
     <div className="mx-auto max-w-[64rem] px-5 py-10 sm:px-8">

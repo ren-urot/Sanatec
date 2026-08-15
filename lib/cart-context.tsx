@@ -25,6 +25,7 @@ type CartContextValue = {
   items: CartItem[];
   count: number;
   isOpen: boolean;
+  hydrated: boolean;
   notes: string;
   setNotes: (notes: string) => void;
   openCart: () => void;
@@ -100,6 +101,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       items,
       count,
       isOpen,
+      hydrated,
       notes,
       setNotes,
       openCart,
@@ -109,7 +111,19 @@ export function CartProvider({ children }: { children: ReactNode }) {
       removeItem,
       clearCart,
     }),
-    [items, count, isOpen, notes, openCart, closeCart, addItem, updateQuantity, removeItem, clearCart],
+    [
+      items,
+      count,
+      isOpen,
+      hydrated,
+      notes,
+      openCart,
+      closeCart,
+      addItem,
+      updateQuantity,
+      removeItem,
+      clearCart,
+    ],
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
