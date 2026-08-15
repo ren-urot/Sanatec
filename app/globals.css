@@ -27,6 +27,10 @@
   --color-best-bg: #fbf0dd;
   --color-new: #1c8c82;
   --color-new-bg: #e1f1ef;
+  --color-purple: #7c3aed;
+  --color-purple-bg: #ede9fe;
+  --color-danger: #dc2626;
+  --color-danger-bg: #fee2e2;
 
   /* Soft blue tint used for the hero and "Need a Custom Quote" panels. */
   --color-tint-blue: #eaf1fb;
@@ -97,6 +101,10 @@
     --color-best-bg: #3a2a0c;
     --color-new: #38b3a6;
     --color-new-bg: #10302c;
+    --color-purple: #a78bfa;
+    --color-purple-bg: #2e1f57;
+    --color-danger: #f87171;
+    --color-danger-bg: #450a0a;
     --color-tint-blue: #132234;
     --color-tint-blue-border: #1d3550;
   }
@@ -124,6 +132,10 @@
   --color-best-bg: var(--color-best-bg);
   --color-new: var(--color-new);
   --color-new-bg: var(--color-new-bg);
+  --color-purple: var(--color-purple);
+  --color-purple-bg: var(--color-purple-bg);
+  --color-danger: var(--color-danger);
+  --color-danger-bg: var(--color-danger-bg);
 
   --font-sans: var(--font-inter);
   --font-heading: var(--font-inter);

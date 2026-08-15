@@ -1,13 +1,39 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { MinusIcon, PlusIcon, QualityIcon, QuoteFileIcon } from "@/components/icons";
+import { useCart } from "@/lib/cart-context";
 import { statusStyles, type Product } from "@/lib/catalog";
+
+function packagingUnit(packaging: string | undefined) {
+  if (!packaging) return "box(es)";
+  if (/box/i.test(packaging)) return "box(es)";
+  if (/case/i.test(packaging)) return "case(s)";
+  return "pc(s)";
+}
 
 export function ProductInfoPanel({ product }: { product: Product }) {
   const [size, setSize] = useState(product.sizes?.[Math.floor((product.sizes.length - 1) / 2)]);
   const [packaging, setPackaging] = useState(product.packagingOptions?.[0]);
   const [quantity, setQuantity] = useState(1);
+  const { addItem, closeCart } = useCart();
+  const router = useRouter();
+
+  function buildCartItem() {
+    const tags = [size ? `Size: ${size}` : null, product.tags[0]].filter(
+      (t): t is string => Boolean(t),
+    );
+    return {
+      productSlug: product.slug,
+      name: product.name,
+      sku: product.sku,
+      image: product.image,
+      tags,
+      quantity,
+      unit: packagingUnit(packaging),
+    };
+  }
 
   return (
     <div>
@@ -109,25 +135,31 @@ export function ProductInfoPanel({ product }: { product: Product }) {
                   <PlusIcon width={15} height={15} />
                 </button>
               </div>
-              <span className="text-sm text-ink-muted">box(es)</span>
+              <span className="text-sm text-ink-muted">{packagingUnit(packaging)}</span>
             </div>
           </div>
 
           <div className="flex flex-1 flex-col gap-2.5 sm:flex-row">
             <button
               type="button"
+              onClick={() => addItem(buildCartItem())}
               className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-accent px-5 py-2.75 text-sm font-semibold whitespace-nowrap text-white transition-colors hover:bg-accent-hover"
             >
               <QuoteFileIcon width={16} height={16} />
               Add to Quote
             </button>
-            <a
-              href="#"
+            <button
+              type="button"
+              onClick={() => {
+                addItem(buildCartItem());
+                closeCart();
+                router.push("/rfq");
+              }}
               className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-border-strong px-5 py-2.75 text-sm font-semibold whitespace-nowrap text-ink transition-colors hover:border-accent hover:text-accent"
             >
               <QuoteFileIcon width={16} height={16} />
               Request a Quote
-            </a>
+            </button>
           </div>
         </div>
       </div>

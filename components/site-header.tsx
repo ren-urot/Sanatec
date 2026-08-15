@@ -5,7 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { categories } from "@/lib/catalog";
+import { useCart } from "@/lib/cart-context";
 import {
+  CartIcon,
   CaretIcon,
   CloseIcon,
   DownloadIcon,
@@ -34,6 +36,7 @@ export function SiteHeader() {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const isProducts = pathname?.startsWith("/products");
+  const { count, openCart } = useCart();
 
   return (
     <>
@@ -130,12 +133,26 @@ export function SiteHeader() {
             >
               <SearchIcon width={18} height={18} />
             </button>
-            <a
-              href="#rfq"
+            <button
+              type="button"
+              aria-label={`Open RFQ cart, ${count} item${count === 1 ? "" : "s"}`}
+              onClick={openCart}
+              className="relative flex h-10 w-10 items-center justify-center rounded-full border border-[var(--chrome-border)] text-[var(--chrome-muted)] transition-colors hover:border-[var(--chrome-accent)] hover:text-[var(--chrome-accent)]"
+            >
+              <CartIcon width={18} height={18} />
+              {count > 0 && (
+                <span className="absolute -top-1 -right-1 flex h-4.5 min-w-4.5 items-center justify-center rounded-full bg-accent px-1 text-[0.625rem] font-bold text-white">
+                  {count}
+                </span>
+              )}
+            </button>
+            <button
+              type="button"
+              onClick={openCart}
               className="hidden items-center justify-center rounded-lg bg-[var(--chrome-accent)] px-5 py-2.75 text-sm font-semibold whitespace-nowrap text-white transition-colors hover:bg-[var(--chrome-accent-hover)] sm:inline-flex"
             >
               Request a Quote
-            </a>
+            </button>
             <button
               type="button"
               aria-label="Open menu"
@@ -183,13 +200,16 @@ export function SiteHeader() {
                 {label}
               </Link>
             ))}
-            <a
-              href="#rfq"
-              onClick={() => setMobileOpen(false)}
+            <button
+              type="button"
+              onClick={() => {
+                setMobileOpen(false);
+                openCart();
+              }}
               className="mt-5 flex w-full items-center justify-center rounded-lg bg-[var(--chrome-accent)] px-5 py-3 text-sm font-semibold text-white"
             >
-              Request a Quote
-            </a>
+              Request a Quote ({count})
+            </button>
           </div>
         </div>
       )}

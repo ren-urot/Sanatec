@@ -10,6 +10,7 @@ import {
 } from "@/components/icons";
 import { ProductCard } from "@/components/product-card";
 import { ProductFilters, type FiltersState } from "@/components/product-filters";
+import { useCart } from "@/lib/cart-context";
 import { categoryBySlug, statusStyles, catalogProducts, type Product } from "@/lib/catalog";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,8 +28,16 @@ function sortProducts(list: Product[], sort: SortKey) {
   return sorted;
 }
 
+function defaultUnit(product: Product) {
+  const first = product.packagingOptions?.[0] ?? "";
+  if (/box/i.test(first)) return "boxes";
+  if (/case/i.test(first)) return "cases";
+  return "pcs";
+}
+
 function ProductListRow({ product }: { product: Product }) {
   const Icon = categoryBySlug(product.categorySlug)?.icon;
+  const { addItem } = useCart();
   return (
     <article className="flex gap-4 rounded-xl border border-border bg-surface p-4 transition-shadow hover:shadow-[0_12px_24px_-16px_rgba(16,24,38,0.25)]">
       <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-lg bg-surface-2">
@@ -67,12 +76,23 @@ function ProductListRow({ product }: { product: Product }) {
         >
           <WishlistIcon width={16} height={16} />
         </button>
-        <a
-          href="#"
+        <button
+          type="button"
+          onClick={() =>
+            addItem({
+              productSlug: product.slug,
+              name: product.name,
+              sku: product.sku,
+              image: product.image,
+              tags: product.tags.slice(0, 2),
+              quantity: 1,
+              unit: defaultUnit(product),
+            })
+          }
           className="inline-flex items-center justify-center rounded-lg border border-accent px-4 py-2 text-xs font-semibold text-accent transition-colors hover:bg-accent hover:text-white"
         >
           Request Quote
-        </a>
+        </button>
       </div>
     </article>
   );
@@ -188,7 +208,7 @@ export function ProductCatalog({ initialCategory }: { initialCategory?: string }
           ) : view === "grid" ? (
             <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 xl:grid-cols-4">
               {filtered.map((product) => (
-                <ProductCard key={product.sku} product={product} showWishlist quoteHref="#" />
+                <ProductCard key={product.sku} product={product} showWishlist />
               ))}
             </div>
           ) : (

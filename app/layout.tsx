@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { RfqCartDrawer } from "@/components/rfq-cart-drawer";
+import { CartProvider } from "@/lib/cart-context";
 import "./globals.css";
 
 const inter = Inter({
@@ -17,7 +19,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${inter.variable} antialiased`}>
-      <body>{children}</body>
+      <body>
+        <CartProvider>
+          {children}
+          <RfqCartDrawer />
+        </CartProvider>
+      </body>
     </html>
   );
 }

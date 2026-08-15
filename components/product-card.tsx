@@ -4,19 +4,26 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { WishlistIcon } from "@/components/icons";
+import { useCart } from "@/lib/cart-context";
 import { categoryBySlug, statusStyles, type Product } from "@/lib/catalog";
+
+function defaultUnit(product: Product) {
+  const first = product.packagingOptions?.[0] ?? "";
+  if (/box/i.test(first)) return "boxes";
+  if (/case/i.test(first)) return "cases";
+  return "pcs";
+}
 
 export function ProductCard({
   product,
   showWishlist = false,
-  quoteHref = "#rfq",
 }: {
   product: Product;
   showWishlist?: boolean;
-  quoteHref?: string;
 }) {
   const [saved, setSaved] = useState(false);
   const Icon = categoryBySlug(product.categorySlug)?.icon;
+  const { addItem } = useCart();
 
   return (
     <article className="flex flex-col overflow-hidden rounded-xl border border-border bg-surface transition-shadow hover:shadow-[0_12px_24px_-16px_rgba(16,24,38,0.25)]">
@@ -68,12 +75,23 @@ export function ProductCard({
         </Link>
         <span className="text-[0.6875rem] text-ink-muted">SKU: {product.sku}</span>
         <span className="text-[0.6875rem] text-ink-muted">{product.specLine}</span>
-        <a
-          href={quoteHref}
+        <button
+          type="button"
+          onClick={() =>
+            addItem({
+              productSlug: product.slug,
+              name: product.name,
+              sku: product.sku,
+              image: product.image,
+              tags: product.tags.slice(0, 2),
+              quantity: 1,
+              unit: defaultUnit(product),
+            })
+          }
           className="mt-auto inline-flex w-full items-center justify-center rounded-lg border border-accent px-3 py-2 text-xs font-semibold text-accent transition-colors hover:bg-accent hover:text-white"
         >
           Request Quote
-        </a>
+        </button>
       </div>
     </article>
   );
