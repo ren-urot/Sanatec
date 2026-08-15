@@ -127,7 +127,7 @@ export function SiteHeader() {
             </button>
             <a
               href="#rfq"
-              className="inline-flex items-center justify-center rounded-lg bg-[var(--chrome-accent)] px-5 py-2.75 text-sm font-semibold whitespace-nowrap text-white transition-colors hover:bg-[var(--chrome-accent-hover)]"
+              className="hidden items-center justify-center rounded-lg bg-[var(--chrome-accent)] px-5 py-2.75 text-sm font-semibold whitespace-nowrap text-white transition-colors hover:bg-[var(--chrome-accent-hover)] sm:inline-flex"
             >
               Request a Quote
             </a>
