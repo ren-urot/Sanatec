@@ -8,11 +8,7 @@ function HeroCopy() {
   return (
     <>
       <h1 className="text-[clamp(1.875rem,1.38rem+1.97vw,3.75rem)] leading-[1.12] font-semibold tracking-tight text-ink break-words">
-        Quality Medical Supplies
-        <br />
-        for Healthcare
-        <br />
-        Professionals
+        Quality Medical Supplies for Healthcare Professionals
       </h1>
 
       <p className="mt-5 max-w-[48ch] text-[clamp(1rem,0.92rem+0.4vw,1.125rem)] leading-relaxed text-ink-muted">
@@ -51,7 +47,7 @@ export function Hero() {
 
       {/* Tablet and up: full-bleed background photo, edge to edge, with the
           copy overlaid on top. */}
-      <div className="relative isolate hidden min-h-[clamp(26rem,60vh,46.5rem)] overflow-hidden sm:block min-[1920px]:min-h-[650px]">
+      <div className="relative isolate hidden min-h-[clamp(26rem,60vh,46.5rem)] overflow-hidden sm:block min-[1920px]:min-h-[710px]">
         <Image
           src="/images/hero.png"
           alt={HERO_ALT}
